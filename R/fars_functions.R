@@ -1,21 +1,21 @@
 #' fars_read data file reader
-#' 
-#' This is a function that reads in a file with FARS data and informs user if the file does not exist as expected. Function can be used to 
-#' read a desired filename, but usually this function is used together with a year by function fars_read_years()
-#' 
-#' @param filename Filename in csv. format.
 #'
-#' @return This function returns a tibble dataframe of the loaded data with dplyr package. 
-#' 
+#' This is a function that reads in a file with FARS data and informs user if the file does not exist as expected. Function can be used to
+#' read a desired filename, but usually this function is used together with a year by function fars_read_years()
+#'
+#' @param filename Filename in csv. format., class: character
+#'
+#' @return This function returns a tibble dataframe of the loaded data with dplyr package.
+#'
 #' @note Stops execution if file does not exis e.g. no data for the given year exists.
 #'
 #' @importFrom readr read_csv
-#' 
+#'
 #' @importFrom dplyr tbl_df
 #'
 #' @examples fars_read(file.csv)
-#' 
-#' @export 
+#'
+#' @export
 
 
 
@@ -27,16 +27,16 @@ fars_read <- function(filename) {
   })
   dplyr::tbl_df(data)
 }
- 
+
 #' make_filename filename generator helper function
-#' 
+#'
 #' make_filename generates a filename of format "accident_%d.csv.bz2NNNN", where NNNN=year that is read based on user input of the year parameter. Used as helper -function.
-#' 
-#' @param year 
-#' 
-#' @return generated filename with year to be read
-#' 
-#' @examples 
+#'
+#' @param year, class: integer
+#'
+#' @return generated filename with year to be read, class: character
+#'
+#' @examples
 #' make_filename(2010)
 
 
@@ -46,20 +46,22 @@ make_filename <- function(year) {
 }
 
 #' fars_read_years read specific reads from a file
-#' 
-#' This function creates data using above defined functions make_filename (for selected year) and fars_read (reads the selected filename with correct year). Selects the defined year from data. 
-#' Usually used as a helper -function. 
-#' 
-#' @param years 1 or several years to be selected
-#' 
+#'
+#' This function creates data using above defined functions make_filename (for selected year) and fars_read (reads the selected filename with correct year). Selects the defined year from data.
+#' Usually used as a helper -function.
+#'
+#' @param years 1 or several years to be selected, class: integer
+#'
 #' @return data from correct file as tibble dataframe
-#' 
-#' @note Rises an error if given year does not exists in files. 
-#' 
+#'
+#' @note Rises an error if given year does not exists in files.
+#'
 #' @importFrom dplyr mutate select
-#' 
+#'
+#' @importFrom magittr "%>%"
+#'
 #' @examples fars_read_years(C(2010, 2011))
-#' 
+#'
 #' @export
 
 
@@ -68,7 +70,7 @@ fars_read_years <- function(years) {
     file <- make_filename(year)
     tryCatch({
       dat <- fars_read(file)
-      dplyr::mutate(dat, year = year) %>% 
+      dplyr::mutate(dat, year = year) %>%
         dplyr::select(MONTH, year)
     }, error = function(e) {
       warning("invalid year: ", year)
@@ -78,49 +80,49 @@ fars_read_years <- function(years) {
 }
 
 #' fars_summarize_years reats a summary of the data with selected years
-#' 
+#'
 #' This function creates summary data of accidents based on selected years as form of a table.
-#' 
-#' @param years selected years as vector
-#' 
-#' @return a summary table of the data 
-#' 
+#'
+#' @param years selected years as vector, class: integer
+#'
+#' @return a summary table of the data
+#'
 #' @importFrom dplyr bind_rows group_by summarize
-#' 
+#'
 #' @importFrom tidyr spread
-#' 
+#'
 #' @examples fars_summarize_years(c(2010, 2011))
-#' 
+#'
 #' @export
 
 
 fars_summarize_years <- function(years) {
   dat_list <- fars_read_years(years)
-  dplyr::bind_rows(dat_list) %>% 
-    dplyr::group_by(year, MONTH) %>% 
+  dplyr::bind_rows(dat_list) %>%
+    dplyr::group_by(year, MONTH) %>%
     dplyr::summarize(n = n()) %>%
     tidyr::spread(year, n)
 }
 
 #' fars_map_state Plot map of accidents in selected state
-#' 
+#'
 #' This function exports the map of accidents during the given year. If no accients exist, function returns "no accidents to plot".
-#' 
-#' @param state.num An integer representing state number
-#' 
-#' @param year An integer representing selected year
-#' 
-#' @return Returns "no accidents to plot" if there were no accidents. Otherwise returns a map containing the accident locations for selected data. 
-#' 
+#'
+#' @param state.num An integer representing state number, class: integer
+#'
+#' @param year An integer representing selected year, class: integer
+#'
+#' @return Returns "no accidents to plot" if there were no accidents. Otherwise returns a map containing the accident locations for selected data.
+#'
 #' @importFrom graphics points
-#' 
+#'
 #' @importFrom maps map
 #'
-#' @note Stops execution if no state exists with the given state.num. 
-#' 
-#' @examples 
+#' @note Stops execution if no state exists with the given state.num.
+#'
+#' @examples
 #' fars_map_state(10, 2010)
-#' 
+#'
 #' @export
 
 
@@ -128,7 +130,7 @@ fars_map_state <- function(state.num, year) {
   filename <- make_filename(year)
   data <- fars_read(filename)
   state.num <- as.integer(state.num)
-  
+
   if(!(state.num %in% unique(data$STATE)))
     stop("invalid STATE number: ", state.num)
   data.sub <- dplyr::filter(data, STATE == state.num)
