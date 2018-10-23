@@ -1,9 +1,10 @@
 Package: MyGit
-Title: What the Package Does (one line, title case)
+Title: Test Exercise to Packages
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Imports: roxygen2
+Authors@R: person("Saara", "Korpela", email = "smjkor@wippies.com", role = c("aut", "cre"))
+Description: This package is only used for learning how to set up a package.
 Depends: R (>= 3.5.1)
-License: What license is it under?
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
