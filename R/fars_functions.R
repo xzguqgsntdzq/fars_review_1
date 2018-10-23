@@ -122,9 +122,6 @@ fars_summarize_years <- function(years) {
 #'
 #' @note Stops execution if no state exists with the given state.num.
 #'
-#' @examples
-#' fars_map_state(10, 2010)
-#'
 #' @export
 
 
