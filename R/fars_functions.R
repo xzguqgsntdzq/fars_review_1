@@ -52,8 +52,6 @@ make_filename <- function(year) {
 #'
 #' @param years 1 or several years to be selected, class: integer
 #'
-#' @param MONTH file contains such parameter
-#'
 #' @return data from correct file as tibble dataframe
 #'
 #' @note Rises an error if given year does not exists in files.
@@ -99,6 +97,9 @@ fars_read_years <- function(years) {
 
 
 fars_summarize_years <- function(years) {
+  year<-NULL
+  MONTH<-NULL
+  n<-NULL
   dat_list <- fars_read_years(years)
   dplyr::bind_rows(dat_list) %>%
     dplyr::group_by(year, MONTH) %>%
@@ -126,6 +127,7 @@ fars_summarize_years <- function(years) {
 
 
 fars_map_state <- function(state.num, year) {
+  STATE<-NULL
   filename <- make_filename(year)
   data <- fars_read(filename)
   state.num <- as.integer(state.num)

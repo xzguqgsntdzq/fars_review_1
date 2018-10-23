@@ -20,7 +20,3 @@ This function exports the map of accidents during the given year. If no accients
 \note{
 Stops execution if no state exists with the given state.num.
 }
-\examples{
-fars_map_state(10, 2010)
-
-}
