@@ -8,8 +8,6 @@ fars_read_years(years)
 }
 \arguments{
 \item{years}{1 or several years to be selected, class: integer}
-
-\item{MONTH}{file contains such parameter}
 }
 \value{
 data from correct file as tibble dataframe
@@ -20,8 +18,4 @@ Usually used as a helper -function.
 }
 \note{
 Rises an error if given year does not exists in files.
-}
-\examples{
-fars_read_years(C(2010, 2011))
-
 }

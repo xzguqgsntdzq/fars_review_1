@@ -15,7 +15,3 @@ a summary table of the data
 \description{
 This function creates summary data of accidents based on selected years as form of a table.
 }
-\examples{
-fars_summarize_years(c(2010, 2011))
-
-}

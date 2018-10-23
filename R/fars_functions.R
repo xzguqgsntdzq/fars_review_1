@@ -13,8 +13,6 @@
 #'
 #' @importFrom dplyr tbl_df
 #'
-#' @examples fars_read(file.csv)
-#'
 #' @export
 
 
@@ -35,9 +33,6 @@ fars_read <- function(filename) {
 #' @param year, class: integer
 #'
 #' @return generated filename with year to be read, class: character
-#'
-#' @examples
-#' make_filename(2010)
 
 
 make_filename <- function(year) {
@@ -59,8 +54,6 @@ make_filename <- function(year) {
 #' @importFrom dplyr mutate select
 #'
 #' @import magrittr
-#'
-#' @examples fars_read_years(C(2010, 2011))
 #'
 #' @export
 
@@ -90,8 +83,6 @@ fars_read_years <- function(years) {
 #' @importFrom dplyr bind_rows group_by summarize
 #'
 #' @importFrom tidyr spread
-#'
-#' @examples fars_summarize_years(c(2010, 2011))
 #'
 #' @export
 

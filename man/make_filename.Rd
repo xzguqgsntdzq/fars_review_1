@@ -15,6 +15,3 @@ generated filename with year to be read, class: character
 \description{
 make_filename generates a filename of format "accident_%d.csv.bz2NNNN", where NNNN=year that is read based on user input of the year parameter. Used as helper -function.
 }
-\examples{
-make_filename(2010)
-}

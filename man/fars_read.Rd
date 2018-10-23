@@ -19,7 +19,3 @@ read a desired filename, but usually this function is used together with a year 
 \note{
 Stops execution if file does not exis e.g. no data for the given year exists.
 }
-\examples{
-fars_read(file.csv)
-
-}
