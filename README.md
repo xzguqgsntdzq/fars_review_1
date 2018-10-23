@@ -2,6 +2,6 @@
 
 ## Badges:
 
-Travis badge missing 
+Travis (Linux): ![](https://travis-ci.org/samkope/MyGit.svg?branch=master)
   
-Appveyor: ![](https://ci.appveyor.com/api/projects/status/os786v0rxuew1t2o?svg=true)
+Appveyor (Win): ![](https://ci.appveyor.com/api/projects/status/os786v0rxuew1t2o?svg=true)
