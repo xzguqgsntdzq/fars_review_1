@@ -60,7 +60,7 @@ make_filename <- function(year) {
 #'
 #' @importFrom dplyr mutate select
 #'
-#' @import magittr
+#' @import magrittr
 #'
 #' @examples fars_read_years(C(2010, 2011))
 #'
