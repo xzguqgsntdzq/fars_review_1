@@ -1,7 +1,7 @@
 Package: MyGit
 Title: Test Exercise to Packages
 Version: 0.0.0.9000
-Imports: roxygen2, magrittr, dplyr, readr, tidyr, graphics, maps
+Imports: roxygen2, magrittr, dplyr, readr, tidyr, graphics, maps, testthat
 Authors@R: person("Saara", "Korpela", email = "smjkor@wippies.com", role = c("aut", "cre"))
 Description: This package is only used for learning how to set up a package.
 Depends: R (>= 3.5.0)
