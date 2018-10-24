@@ -3,10 +3,14 @@ title: "MyGit vignette"
 author: "Saara Korpela"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
+params: 
+  year: 2001
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+---
+
 ---
 
 ```{r setup, include = FALSE}
@@ -16,50 +20,23 @@ knitr::opts_chunk$set(
 )
 ```
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+This is a package for testing *how to set up a package*. **No data is included** in this test package, but there are som functions. If you want to 
+use the functions, please download the corresponding data from Coursera Mastering Software Development in R, course: R Packages. 
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+## Example function *make_filename* without need to load data
 
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+```{r}
+  make_filename(params$year)
+  make_filename(2010)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+## List of all functions
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
++ fars_read()
++ make_filename()
++ fars_read_years()
++ fars_summarize_years()
++ fars_map_state()
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
 
-## More Examples
 
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
