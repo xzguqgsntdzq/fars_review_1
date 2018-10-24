@@ -26,6 +26,13 @@ use the functions, please download the corresponding data from Coursera Masterin
 ## Example function *make_filename* without need to load data
 
 ```{r}
+
+  make_filename <- function(year) {
+  year <- as.integer(year)
+  sprintf("accident_%d.csv.bz2", year)
+  }
+
+
   make_filename(params$year)
   make_filename(2010)
 ```
